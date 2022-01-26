@@ -5,6 +5,19 @@ import CartItem from './CartItem'
 
 function CartItems({items, setCartItems}) {
 
+    const deleteItem = (indexToDelete) => {
+        // pass the function from CartItems to CartItem component
+        // Pass the index of the item to know which item to delete
+        // Use the filter() function in es6 to filter out item based on index
+        // Update the items using setCartItems() function
+
+        // ** Filter out the items where the item index does not equal to the selected item index
+        const newitems= items.filter((value, index)=>{
+            return index !== indexToDelete
+        })
+        setCartItems(newitems)
+    }
+
     const changeItemQuantity = (e, index) => {
         // when we select a quantity on item, we pass it in here
         // Pass in the index
@@ -28,6 +41,7 @@ function CartItems({items, setCartItems}) {
                 item={item}
                 key={index}
                 changeItemQuantity={changeItemQuantity}
+                deleteItem={deleteItem}
                 />
                 )}
             </div>
